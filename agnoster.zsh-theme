@@ -125,9 +125,18 @@ prompt_status() {
 # Display current virtual environment
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=red
+    color=magenta
     prompt_segment $color $PRIMARY_FG
     print -Pn " $(basename $VIRTUAL_ENV) "
+  fi
+}
+
+# Display current conda environment
+prompt_condaenv() {
+  if [[ -n $CONDA_DEFAULT_ENV ]]; then
+    color=magenta
+    prompt_segment $color $PRIMARY_FG
+    print -Pn " $(basename $CONDA_DEFAULT_ENV) "
   fi
 }
 
@@ -138,6 +147,7 @@ prompt_agnoster_main() {
   prompt_status
   prompt_context
   prompt_virtualenv
+  prompt_condaenv
   prompt_dir
   prompt_git
   prompt_end
